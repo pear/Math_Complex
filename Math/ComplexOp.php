@@ -51,7 +51,7 @@ class Math_ComplexOp {/*{{{*/
      *
      * @return boolean
      */
-    public static function isComplex(Math_Complex Math_Complex $c1)
+    public static function isComplex(Math_Complex $c1)
     {
         if (function_exists('is_a')) {
             return is_a($c1, 'math_complex');
