@@ -512,11 +512,7 @@ class Math_ComplexOp {/*{{{*/
             throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
         }
         $z = Math_ComplexOp::inverse($c1); // get the sine
-        if (PEAR::isError($z)) {
-            return $z;
-        } else {
-            return Math_ComplexOp::asin($z);
-        }
+        return Math_ComplexOp::asin($z);
     }/*}}}*/
 
     /*{{{ acot() */
@@ -532,11 +528,7 @@ class Math_ComplexOp {/*{{{*/
             throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
         }
         $z = Math_ComplexOp::inverse($c1); // get the tangent
-        if (PEAR::isError($z)) {
-            return $z;
-        } else {
-            return Math_ComplexOp::atan($z);
-        }
+        return Math_ComplexOp::atan($z);
     }/*}}}*/
 
     // Hyperbolic methods
@@ -603,11 +595,7 @@ class Math_ComplexOp {/*{{{*/
     public static function sech(Math_Complex $c1) 
     {
         $c2 = Math_ComplexOp::cosh($c1);
-        if (PEAR::isError($c2)) {
-            return $c2;
-        } else {
-            return Math_ComplexOp::inverse($c2);
-        }
+        return Math_ComplexOp::inverse($c2);
     }/*}}}*/
 
     /*{{{ csch() */
@@ -620,11 +608,7 @@ class Math_ComplexOp {/*{{{*/
     public static function csch(Math_Complex $c1) 
     {
         $c2 = Math_ComplexOp::sinh($c1);
-        if (PEAR::isError($c2)) {
-            return $c2;
-        } else {
-            return Math_ComplexOp::inverse($c2);
-        }
+        return Math_ComplexOp::inverse($c2);
     }/*}}}*/
 
     /*{{{ coth() */
@@ -637,11 +621,7 @@ class Math_ComplexOp {/*{{{*/
     public static function coth(Math_Complex $c1) 
     {
         $c2 = Math_ComplexOp::tanh($c1);
-        if (PEAR::isError($c2)) {
-            return $c2;
-        } else {
-            return Math_ComplexOp::inverse($c2);
-        }
+        return Math_ComplexOp::inverse($c2);
     }/*}}}*/
 
     // Inverse hyperbolic methods
@@ -660,11 +640,7 @@ class Math_ComplexOp {/*{{{*/
         }
         $z = Math_ComplexOp::multIm($c1, 1.0);
         $z = Math_ComplexOp::asin($z);
-        if (PEAR::isError($z)) {
-            return $z;
-        } else {
-            return Math_ComplexOp::multIm($z, -1.0);
-        }
+        return Math_ComplexOp::multIm($z, -1.0);
     }/*}}}*/
 
     /*{{{ acosh() */
@@ -680,11 +656,7 @@ class Math_ComplexOp {/*{{{*/
             throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
         }
         $z = Math_ComplexOp::acos($c1);
-        if (PEAR::isError($z)) {
-            return $z;
-        } else {
-            return Math_ComplexOp::multIm($z, (($z->getIm() > 0) ? 1.0 : -1.0));
-        }
+        return Math_ComplexOp::multIm($z, (($z->getIm() > 0) ? 1.0 : -1.0));
     }/*}}}*/
 
     /*{{{ atanh() */
@@ -813,11 +785,7 @@ class Math_ComplexOp {/*{{{*/
     public static function sub(Math_Complex $c1, &$c2) 
     {
         $nc2 = Math_ComplexOp::negative($c2);
-        if (PEAR::isError($nc2)) {
-            return $nc2;
-        } else {
-            return Math_ComplexOp::add($c1, $nc2);
-        }
+        return Math_ComplexOp::add($c1, $nc2);
     }/*}}}*/
 
     /*{{{ mult() */
