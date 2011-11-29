@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>Math_Complex</name>
  <channel>pear.php.net</channel>
  <summary>Classes that define complex numbers and their operations</summary>
@@ -13,11 +13,11 @@ logarithms of complex numbers.</description>
   <email>jmcastagnetto@php.net</email>
   <active>yes</active>
  </lead>
- <date>2010-10-05</date>
- <time>00:46:32</time>
+ <date>2011-11-29</date>
+ <time>23:28:32</time>
  <version>
-  <release>0.8.6</release>
-  <api>0.8.6</api>
+  <release>0.9.0</release>
+  <api>0.9.0</api>
  </version>
  <stability>
   <release>beta</release>
@@ -25,24 +25,21 @@ logarithms of complex numbers.</description>
  </stability>
  <license uri="http://www.php.net/license">PHP</license>
  <notes>
-QA release
-Updated to PHPUnit 3.4+
-Bug #4688 Complex.php outputs new line
-Package 2.0
-Fixed dir structure
+Swap to PHP5
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
-   <file baseinstalldir="/" md5sum="552b3f3d0c0ab747d56d3c7505aee0be" name="docs/Math_Complex.dia" role="doc" />
+   <file baseinstalldir="/" md5sum="e5276269786e4aef74f10034c8928338" name="docs/Math_Complex.dia" role="doc" />
    <file baseinstalldir="/" md5sum="2202747118c7a1fa8786270a97f58a4e" name="docs/Math_Complex.png" role="doc" />
-   <file baseinstalldir="/" md5sum="4ee5822441034d8c2267ef5476567d78" name="docs/README" role="doc" />
-   <file baseinstalldir="/" md5sum="9e5de59977dbfaa7f00f798a24b59e3c" name="docs/examples/using_complexop.php" role="doc" />
-   <file baseinstalldir="/" md5sum="ddd915d49d23167c473f97f7097711f3" name="Math/Complex.php" role="php" />
-   <file baseinstalldir="/" md5sum="d07cd27b6f3802892df5597224f9e1f4" name="Math/ComplexOp.php" role="php" />
+   <file baseinstalldir="/" md5sum="22100e67257aa4540e66623000a38654" name="docs/README" role="doc" />
+   <file baseinstalldir="/" md5sum="3cbbd24ca24a414433655e3e946a5eb8" name="docs/examples/using_complexop.php" role="doc" />
+   <file baseinstalldir="/" md5sum="e90825fb22975fc8cade2eedf44f9977" name="Math/Complex.php" role="php" />
+   <file baseinstalldir="/" md5sum="98a2267961649ad47aa21cc15abfa4a2" name="Math/ComplexOp.php" role="php" />
    <file baseinstalldir="/" md5sum="5c9f2e4a4d182d24dd539e06b246f8ef" name="tests/AllTests.php" role="test" />
-   <file baseinstalldir="/" md5sum="cf38a245b3706f32bf7217e9c63ae6c3" name="tests/Math_ComplexOpTest.php" role="test" />
-   <file baseinstalldir="/" md5sum="2f8bbe7c76280ff1bb3392c1f32a3ef0" name="tests/Math_ComplexTest.php" role="test" />
-   <file baseinstalldir="/" md5sum="dac41427dc87b6e862cec4dd5682bf3c" name="math_complex.ini" role="data" />
+   <file baseinstalldir="/" md5sum="ad4d419537810e6acb3dde4162244835" name="tests/Math_ComplexOpTest.php" role="test" />
+   <file baseinstalldir="/" md5sum="bf7598a280b6d74da3a0b95ddf9e13ee" name="tests/Math_ComplexTest.php" role="test" />
+   <file baseinstalldir="/" md5sum="336fcbd09fae654bdad0ff2d64a5d7f3" name="math_complex.ini" role="data" />
+   <file baseinstalldir="/" md5sum="4d29645297a5a74a63dec78ecc287779" name="README" role="data" />
   </dir>
  </contents>
  <dependencies>
@@ -114,6 +111,21 @@ Updated to PHPUnit 3.4+
 Bug #4688 Complex.php outputs new line
 Package 2.0
 Fixed dir structure
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.0</release>
+    <api>0.9.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2011-11-29</date>
+   <license uri="http://www.php.net/license">PHP</license>
+   <notes>
+Swap to PHP5
    </notes>
   </release>
  </changelog>
