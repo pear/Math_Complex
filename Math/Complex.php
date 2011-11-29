@@ -80,7 +80,7 @@ class Math_Complex {
         $i = $this->getIm();
         $str = $r;
         $str .=  ($i < 0) ? ' - ' : ' + ';
-        $str .= round(abs($i), 11).'i';
+        $str .= abs($i).'i';
         return $str;
     }
 
