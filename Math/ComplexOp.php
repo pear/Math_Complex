@@ -54,7 +54,7 @@ class Math_ComplexOp {/*{{{*/
     public static function isComplex(Math_Complex &$c1)
     {
         if (function_exists('is_a')) {
-            return is_a(&$c1, 'math_complex');
+            return is_a($c1, 'math_complex');
         } else {
             return (strtolower(get_class($c1)) == 'math_complex' 
                     || is_subclass_of($c1, 'math_complex'));
@@ -142,7 +142,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public function static &exp (&$c1) 
+    public function static &exp(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -161,7 +161,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &log (&$c1) 
+    public static function &log(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -177,7 +177,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &log10 (&$c1) 
+    public static function &log10(&$c1) 
     {
         $log = Math_ComplexOp::log($c1);
         if (PEAR::isError($log))
@@ -206,7 +206,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &negative (&$c1) 
+    public static function &negative(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -244,7 +244,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &sin (&$c1) 
+    public static function &sin(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -261,7 +261,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &cos (&$c1) 
+    public static function &cos(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -278,7 +278,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &tan (&$c1) 
+    public static function &tan(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -298,7 +298,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &sec (&$c1) 
+    public static function &sec(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -313,7 +313,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &csc (&$c1) 
+    public static function &csc(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -328,7 +328,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &cot (&$c1) 
+    public static function &cot(&$c1) 
     {
         $z = Math_ComplexOp::tan($c1);
         if (PEAR::isError($z)) {
@@ -347,7 +347,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &asin (&$c1) 
+    public static function &asin(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -369,7 +369,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &asinAlt (&$c1) 
+    public static function &asinAlt(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -442,7 +442,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &acos (&$c1) 
+    public static function &acos(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -462,7 +462,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &atan (&$c1) 
+    public static function &atan(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -485,7 +485,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &asec (&$c1) 
+    public static function &asec(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -504,7 +504,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &acsc (&$c1) 
+    public static function &acsc(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -523,7 +523,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &acot (&$c1) 
+    public static function &acot(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -544,7 +544,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &sinh (&$c1) 
+    public static function &sinh(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -561,7 +561,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &cosh (&$c1) 
+    public static function &cosh(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -578,7 +578,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &tanh (&$c1) 
+    public static function &tanh(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -596,7 +596,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &sech (&$c1) 
+    public static function &sech(&$c1) 
     {
         $c2 = Math_ComplexOp::cosh($c1);
         if (PEAR::isError($c2)) {
@@ -613,7 +613,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &csch (&$c1) 
+    public static function &csch(&$c1) 
     {
         $c2 = Math_ComplexOp::sinh($c1);
         if (PEAR::isError($c2)) {
@@ -630,7 +630,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &coth (&$c1) 
+    public static function &coth(&$c1) 
     {
         $c2 = Math_ComplexOp::tanh($c1);
         if (PEAR::isError($c2)) {
@@ -649,7 +649,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &asinh (&$c1) 
+    public static function &asinh(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -670,7 +670,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &acosh (&$c1) 
+    public static function &acosh(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -690,7 +690,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &atanh (&$c1) 
+    public static function &atanh(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -716,7 +716,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &asech (&$c1) 
+    public static function &asech(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -732,7 +732,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &acsch (&$c1) 
+    public static function &acsch(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -748,7 +748,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &acoth (&$c1) 
+    public static function &acoth(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
@@ -767,7 +767,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return boolean|PEAR_Error True if $c1 == $c2, False if $c1 != $c2, PEAR_Error object on error
      */
-    public static function &areEqual (&$c1, &$c2) 
+    public static function &areEqual(&$c1, &$c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
@@ -788,7 +788,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &add (&$c1, &$c2) 
+    public static function &add(&$c1, &$c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
@@ -806,7 +806,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &sub (&$c1, &$c2) 
+    public static function &sub(&$c1, &$c2) 
     {
         $nc2 = Math_ComplexOp::negative($c2);
         if (PEAR::isError($nc2)) {
@@ -824,7 +824,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &mult (&$c1, &$c2) 
+    public static function &mult(&$c1, &$c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
@@ -844,7 +844,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &div (&$c1, &$c2) 
+    public static function &div(&$c1, &$c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
@@ -871,7 +871,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &pow (&$c1, &$c2) 
+    public static function &pow(&$c1, &$c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
@@ -902,7 +902,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &logBase (&$c1, &$c2) 
+    public static function &logBase(&$c1, &$c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
@@ -922,7 +922,7 @@ class Math_ComplexOp {/*{{{*/
      * @param float $real
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function &multReal (&$c1, $real) 
+    public static function &multReal(&$c1, $real) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
             return PEAR::raiseError('First argument is not a PEAR::Math_Complex object');
