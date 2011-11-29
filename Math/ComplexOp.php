@@ -20,7 +20,6 @@
 // $Id$
 //
 
-include_once 'PEAR.php';
 include_once 'Math/Complex.php';
 include_once 'Math/TrigOp.php';
 
@@ -47,7 +46,7 @@ class Math_ComplexOp {/*{{{*/
 
     /*{{{ isComplex() */
     /**
-     * Checks if a given object is an instance of PEAR::Math_Complex
+     * Checks if a given object is an instance of Math_Complex
      *
      * @return boolean
      */
@@ -85,12 +84,12 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the complex square root of a complex number: z = sqrt(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
      */
     public static function sqrt(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $x = abs($c1->getReal());
         $y = abs($c1->getIm());
@@ -140,12 +139,12 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the exponential of a complex number: z = exp(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
      */
     public static function exp(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $rho = exp($c1->getReal());
         $theta = $c1->getIm();
@@ -160,12 +159,12 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the logarithm (base 2) of a complex number: z = log(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
      */
     public static function log(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $r = log($c1->abs());
         $i = $c1->arg();
@@ -177,7 +176,8 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the logarithm (base 10) of a complex number: z = log10(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function log10(Math_Complex $c1) 
     {
@@ -190,12 +190,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the conjugate of a complex number: z = conj(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function conjugate(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         return new Math_Complex($c1->getReal(), -1 * $c1->getIm());
     }/*}}}*/
@@ -205,12 +206,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the negative of a complex number: z = -c1
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function negative(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         } else {
             return new Math_Complex(-1 * $c1->getReal(), -1 * $c1->getIm());
         }
@@ -221,16 +223,18 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse of a complex number: z = 1/c1
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function inverse(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $abs = $c1->abs();
-        if ($abs == 0.0)
-            return PEAR::raiseError('Math_Complex object\'s norm is zero');
+        if ($abs == 0.0) {
+            throw new Math_Complex_Exception('Math_Complex object\'s norm is zero');
+        }
         $temp = 1.0 / $c1->abs();
         $r = $c1->getReal() * $temp * $temp;
         $i = -1 * $c1->getIm() * $temp * $temp;
@@ -244,12 +248,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the sine of a complex number: z = sin(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function sin(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $a = $c1->getReal(); $b = $c1->getIm();
         $r = sin($a)*cosh($b);
@@ -262,12 +267,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the cosine of a complex number: z = cos(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function cos(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $a = $c1->getReal(); $b = $c1->getIm();
         $r = cos($a)*cosh($b);
@@ -280,17 +286,18 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the tangent of a complex number: z = tan(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function tan(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $a = $c1->getReal(); $b = $c1->getIm();
         $den = 1 + pow(tan($a),2)*pow(tanh($b),2);
         if ($den == 0.0)
-            return PEAR::raiseError('Division by zero while calculating Math_ComplexOp::tan()');
+            throw new Math_Complex_Exception('Division by zero while calculating Math_ComplexOp::tan()');
         $r = pow(Math_TrigOp::sech($b),2)*tan($a)/$den;
         $i = pow(Math_TrigOp::sec($a),2)*tanh($b)/$den;
         return new Math_Complex( $r, $i );
@@ -301,12 +308,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the secant of a complex number: z = sec(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function sec(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $z = Math_ComplexOp::cos($c1);  
         return Math_ComplexOP::inverse($z);
@@ -317,12 +325,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the cosecant of a complex number: z = csc(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function csc(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $z = Math_ComplexOp::sin($c1);  
         return Math_ComplexOP::inverse($z);
@@ -333,7 +342,8 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the cotangent of a complex number: z = cot(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function cot(Math_Complex $c1) 
     {
@@ -348,12 +358,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse sine of a complex number: z = asin(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function asin(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $t = Math_ComplexOp::mult($c1, $c1);
         $v = Math_ComplexOp::sub(new Math_Complex(1,0), $t);
@@ -371,12 +382,13 @@ class Math_ComplexOp {/*{{{*/
      * Uses an alternative algorithm
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function asinAlt(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $r = $c1->getReal();
         $i = $c1->getIm();
@@ -445,12 +457,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse cosine of a complex number: z = acos(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function acos(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $t = Math_ComplexOp::mult($c1, $c1);
         $v = Math_ComplexOp::sub(new Math_Complex(1,0), $t);
@@ -466,12 +479,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse tangent of a complex number: z = atan(c1):
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function atan(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $u = new Math_Complex(-1*$c1->getIm(), $c1->getReal());
         $t = new Math_Complex(1,0);
@@ -487,12 +501,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse secant of a complex number: z = asec(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function asec(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
 
         $z = Math_ComplexOp::inverse($c1); // get the cosine
@@ -504,12 +519,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse cosecant of a complex number: z = acsc(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function acsc(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $z = Math_ComplexOp::inverse($c1); // get the sine
         return Math_ComplexOp::asin($z);
@@ -520,12 +536,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse cotangent of a complex number: z = acot(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function acot(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $z = Math_ComplexOp::inverse($c1); // get the tangent
         return Math_ComplexOp::atan($z);
@@ -538,12 +555,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the hyperbolic sine of a complex number: z = sinh(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function sinh(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $r = $c1->getReal();
         $i = $c1->getIm();
@@ -555,12 +573,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the hyperbolic cosine of a complex number: z = cosh(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function cosh(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $r = $c1->getReal();
         $i = $c1->getIm();
@@ -572,12 +591,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the hyperbolic tangent of a complex number: z = tanh(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function tanh(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $r = $c1->getReal();
         $i = $c1->getIm();
@@ -590,7 +610,8 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the hyperbolic secant of a complex number: z = sech(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function sech(Math_Complex $c1) 
     {
@@ -603,7 +624,8 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the hyperbolic cosecant of a complex number: z = csch(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function csch(Math_Complex $c1) 
     {
@@ -616,7 +638,8 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the hyperbolic cotangent of a complex number: z = coth(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function coth(Math_Complex $c1) 
     {
@@ -631,12 +654,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse hyperbolic sine of a complex number: z = asinh(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function asinh(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $z = Math_ComplexOp::multIm($c1, 1.0);
         $z = Math_ComplexOp::asin($z);
@@ -648,12 +672,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse hyperbolic cosine of a complex number: z = acosh(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function acosh(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $z = Math_ComplexOp::acos($c1);
         return Math_ComplexOp::multIm($z, (($z->getIm() > 0) ? 1.0 : -1.0));
@@ -664,12 +689,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse hyperbolic tangent of a complex number: z = atanh(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function atanh(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         if ($c1->getIm() == 0.0) {
             $r = $c1->getReal();
@@ -690,12 +716,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse hyperbolic secant of a complex number: z = asech(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function asech(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $z = Math_ComplexOp::inverse($c1);
         return Math_ComplexOp::acosh($z);
@@ -706,12 +733,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse hyperbolic cosecant of a complex number: z = acsch(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function acsch(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $z = Math_ComplexOp::inverse($c1);
         return Math_ComplexOp::asinh($z);
@@ -722,12 +750,13 @@ class Math_ComplexOp {/*{{{*/
      * Calculates the inverse hyperbolic cotangent of a complex number: z = acoth(c1)
      *
      * @param Math_Complex $c1
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function acoth(Math_Complex $c1) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('argument is not a Math_Complex object');
         }
         $z = Math_ComplexOp::inverse($c1);
         return Math_ComplexOp::atanh($z);
@@ -741,13 +770,13 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param Math_Complex $c2
-     * @return boolean|PEAR_Error True if $c1 == $c2, False if $c1 != $c2, PEAR_Error object on error
+     * @return boolean True if $c1 == $c2, False if $c1 != $c2
      */
     public static function areEqual(Math_Complex $c1, Math_Complex $c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
-            throw new InvalidArgumentException('Both arguments must be PEAR::Math_Complex objects');
+            throw new InvalidArgumentException('Both arguments must be Math_Complex objects');
         } else {
             $same_class = ( strtolower(get_class($c1)) == strtolower(get_class($c2)) );
             $same_real = ( $c1->getReal() == $c2->getReal() );
@@ -762,13 +791,14 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param Math_Complex $c2
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function add(Math_Complex $c1, Math_Complex $c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
-            throw new InvalidArgumentException('Both arguments must be PEAR::Math_Complex objects');
+            throw new InvalidArgumentException('Both arguments must be Math_Complex objects');
         } else {
             return new Math_Complex( $c1->getReal() + $c2->getReal(), $c1->getIm() + $c2->getIm());
         }
@@ -780,7 +810,8 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param Math_Complex $c2
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function sub(Math_Complex $c1, Math_Complex $c2) 
     {
@@ -794,13 +825,14 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param Math_Complex $c2
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function mult(Math_Complex $c1, Math_Complex $c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
-            throw new InvalidArgumentException('Both arguments must be PEAR::Math_Complex objects');
+            throw new InvalidArgumentException('Both arguments must be Math_Complex objects');
         } else {
             $r = ($c1->getReal() * $c2->getReal()) - ($c1->getIm() * $c2->getIm());
             $i = ($c1->getReal() * $c2->getIm()) + ($c2->getReal() * $c1->getIm());
@@ -814,19 +846,20 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param Math_Complex $c2
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function div(Math_Complex $c1, Math_Complex $c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
-            throw new InvalidArgumentException('Both arguments must be PEAR::Math_Complex objects');
+            throw new InvalidArgumentException('Both arguments must be Math_Complex objects');
         } else {
             $a = $c1->getReal(); $b = $c1->getIm();
             $c = $c2->getReal(); $d = $c2->getIm();
             $div = $c*$c + $d*$d;
             if ($div == 0.0) {
-                return PEAR::raiseError('Division by zero in Math_ComplexOp::div()');
+                throw new Math_Complex_Exception('Division by zero in Math_ComplexOp::div()');
             } else {
                 $r = ($a*$c + $b*$d)/$div;
                 $i = ($b*$c - $a*$d)/$div;
@@ -841,13 +874,14 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param Math_Complex $c2
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function pow(Math_Complex $c1, Math_Complex $c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
-            throw new InvalidArgumentException('Both arguments must be PEAR::Math_Complex objects');
+            throw new InvalidArgumentException('Both arguments must be Math_Complex objects');
         } else {
             $ar = $c1->getReal(); $ai = $c1->getIm();
             $br = $c2->getReal(); $bi = $c2->getIm();
@@ -872,13 +906,14 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param Math_Complex $c2
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function logBase(Math_Complex $c1, Math_Complex $c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
-            throw new InvalidArgumentException('Both arguments must be PEAR::Math_Complex objects');
+            throw new InvalidArgumentException('Both arguments must be Math_Complex objects');
         } else {
             return Math_ComplexOp::div(Math_ComplexOp::log($c1), Math_ComplexOp::log($c2));
         }
@@ -892,12 +927,13 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param float $real
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function multReal(Math_Complex $c1, $real) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('First argument is not a PEAR::Math_Complex object');
+            throw new InvalidArgumentException('First argument is not a Math_Complex object');
         }
         if (!is_numeric($real)) {
             throw new InvalidArgumentException('Second argument is not valid real number');
@@ -914,12 +950,13 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param float $im
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function multIm(Math_Complex $c1, $im) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('First arguments must be PEAR::Math_Complex object');
+            throw new InvalidArgumentException('First arguments must be Math_Complex object');
         } elseif (!is_numeric($im)) {
             throw new InvalidArgumentException("An imaginary coefficient is needed as second parameter");
         } else {
@@ -935,12 +972,13 @@ class Math_ComplexOp {/*{{{*/
      *
      * @param Math_Complex $c1
      * @param float $real
-     * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
+     * @return Math_Complex A valid Math_Complex number on success
+     * @throws InvalidArgumentException
      */
     public static function powReal(Math_Complex $c1, $real) 
     {
         if (!Math_ComplexOp::isComplex($c1)) {
-            throw new InvalidArgumentException('First arguments must be PEAR::Math_Complex object');
+            throw new InvalidArgumentException('First arguments must be Math_Complex object');
         } elseif (!is_numeric($real)) {
             throw new InvalidArgumentException("An real number is needed as second parameter");
         } else {

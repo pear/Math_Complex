@@ -19,7 +19,7 @@
 // $Id$
 //
 
-include_once "PEAR.php";
+require_once 'Math/Complex/Exception.php';
 
 /**
  * Package with classes to represent and manipulate complex number. Contain
@@ -118,13 +118,14 @@ class Math_Complex {
     /**
      * Returns the argument of the complex number
      *
-     * @return float|PEAR_Error A floating point number on success, a PEAR_Error otherwise
+     * @return float A floating point number on success
+     * @throws Math_Complex_Exception
      */
     public function arg() 
     {
         $arg = atan2($this->_im,$this->_real);
         if (M_PI < $arg || $arg < -1*M_PI) {
-            return PEAR::raiseError('Argument has an impossible value');
+            throw new Math_Complex_Exception('Argument has an impossible value');
         } else {
             return $arg;
         }
@@ -135,7 +136,7 @@ class Math_Complex {
      * Returns the angle (argument) associated with the complex number
      * Alias of Math_Complex::arg()
      *
-     * @return mixed A float on success, a PEAR_Error otherwise
+     * @return mixed A float on success
      */
     public function angle() {
         return $this->arg();
