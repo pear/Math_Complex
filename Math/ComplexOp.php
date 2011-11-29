@@ -142,7 +142,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c1
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public function static &exp(&$c1) 
+    public static function &exp(&$c1) 
     {
         if (!Math_ComplexOp::isComplex($c1))
             return PEAR::raiseError('argument is not a PEAR::Math_Complex object');
