@@ -782,7 +782,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function sub(Math_Complex $c1, &$c2) 
+    public static function sub(Math_Complex $c1, Math_Complex $c2) 
     {
         $nc2 = Math_ComplexOp::negative($c2);
         return Math_ComplexOp::add($c1, $nc2);
@@ -816,7 +816,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function div(Math_Complex $c1, &$c2) 
+    public static function div(Math_Complex $c1, Math_Complex $c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
@@ -843,7 +843,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function pow(Math_Complex $c1, &$c2) 
+    public static function pow(Math_Complex $c1, Math_Complex $c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
@@ -874,7 +874,7 @@ class Math_ComplexOp {/*{{{*/
      * @param Math_Complex $c2
      * @return Math_Complex|PEAR_Error A valid Math_Complex number on success, PEAR_Error otherwise
      */
-    public static function logBase(Math_Complex $c1, &$c2) 
+    public static function logBase(Math_Complex $c1, Math_Complex $c2) 
     {
         if (!Math_ComplexOp::isComplex($c1) 
             || !Math_ComplexOp::isComplex($c2)) {
